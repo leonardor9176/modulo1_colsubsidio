@@ -1,8 +1,28 @@
-function randomSelector(arrayStudents) {
-    return Math.round(Math.random() * (arrayStudents.length - 1));
+function randomSelector(studentsList) {
+    return Math.round(Math.random() * (studentsList.length - 1));
 }
 
-const students = [];
+function createGroups(studentsList) {
+    const studentsAux = [...studentsList];
+
+    const groups = [];
+    const maxGroupSize = 2;
+
+    while (studentsAux.length) {
+        let groupAux = [];
+        for (let i = 0; i < maxGroupSize; i++) {
+            if (studentsAux.length) {
+                const studentSelected = randomSelector(studentsAux);
+                groupAux.push(studentsAux[studentSelected]);
+                studentsAux.splice(studentSelected, 1);
+            }
+        }
+        groups.push(groupAux);
+    }
+    return groups;
+}
+
+let students = [];
 students.push('ANDRES FELIPE GIRALDO');
 students.push('EDWIN GERMAN VILLALBA GONZALEZ');
 students.push('CRISTIAN ORLANDO ROMERO ACOSTA');
@@ -19,24 +39,7 @@ students.push('LINA MARÍA RODRÍGUEZ RAMÍREZ');
 students.push('JOHN JAIRO ORJUELA ESPINOSA');
 students.push('JHON FAVER MACHADO ALAPE');
 students.push('FRANCISCO JAVIER TORRES VILLAMOR');
-
-const studentsAux = students;
-
-const groups = [];
-const maxGroupSize = 2;
-
-while (studentsAux.length) {
-    let groupAux = [];
-    for (let i = 0; i < maxGroupSize; i++) {
-        if (studentsAux.length) {
-            const studentSelected = randomSelector(studentsAux);
-            groupAux.push(studentsAux[studentSelected]);
-            studentsAux.splice(studentSelected, 1);
-        }
-    }
-    groups.push(groupAux);
-}
-// console.log(groups);
+let groups = createGroups(students);
 
 //DOM
 const h1 = document.createElement('h1');
@@ -47,24 +50,44 @@ const bodyMain = document.createElement('main');
 bodyMain.setAttribute('id', 'body-main');
 document.body.appendChild(bodyMain);
 
-const divGroups = document.createElement('div');
-divGroups.setAttribute('id', 'div-groups');
-bodyMain.appendChild(divGroups);
+const divButton = document.createElement('div');
+divButton.setAttribute('id', 'div-button');
+bodyMain.appendChild(divButton);
 
-for (let i = 0; i < groups.length; i++) {
+const button = document.createElement('button');
+button.innerText = `Crear grupos`;
+button.setAttribute('id', 'create-groups-button');
+divButton.appendChild(button);
 
-    const divGroupContainer = document.createElement('div');
-    divGroupContainer.setAttribute('class', 'div-group-container');
-    divGroups.appendChild(divGroupContainer);
+const buttonClick = document.querySelector('#create-groups-button');
+buttonClick.addEventListener('click', (eventFunctOpt1) => {
 
-    const pGroup = document.createElement('p');
-    pGroup.setAttribute('class', 'p-group');
-    pGroup.innerText = `Grupo ${i + 1}`;
-    divGroupContainer.appendChild(pGroup);
-    for (let j = 0; j < groups[i].length; j++) {
-        const groupMember = document.createElement('p');
-        groupMember.setAttribute('class', 'p-group-member');
-        groupMember.innerText = `${groups[i][j].toLowerCase()}`;
-        divGroupContainer.appendChild(groupMember);
+    groups = createGroups(students);
+    const checkDivGroup = document.getElementById('div-groups');
+    if (document.body.contains(checkDivGroup)) {
+
+        const father = checkDivGroup.parentElement;
+        father.removeChild(checkDivGroup);
     }
-}
+    const divGroups = document.createElement('div');
+    divGroups.setAttribute('id', 'div-groups');
+    bodyMain.appendChild(divGroups);
+
+    for (let i = 0; i < groups.length; i++) {
+
+        const divGroupContainer = document.createElement('div');
+        divGroupContainer.setAttribute('class', 'div-group-container');
+        divGroups.appendChild(divGroupContainer);
+
+        const pGroup = document.createElement('p');
+        pGroup.setAttribute('class', 'p-group');
+        pGroup.innerText = `Grupo ${i + 1}`;
+        divGroupContainer.appendChild(pGroup);
+        for (let j = 0; j < groups[i].length; j++) {
+            const groupMember = document.createElement('p');
+            groupMember.setAttribute('class', 'p-group-member');
+            groupMember.innerText = `${groups[i][j].toLowerCase()}`;
+            divGroupContainer.appendChild(groupMember);
+        }
+    }
+});
