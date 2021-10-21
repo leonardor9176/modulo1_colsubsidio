@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,7 +8,16 @@
     <link rel="stylesheet" href="./styles/styles.css">
     <title>Document</title>
 </head>
+
 <body>
+    <div id="div-text-box">
+        <label for="students-text-box">Ingrese la lista de los integrantes a agrupar:</label>
+        <textarea id="students-text-box" name="students-text-box"></textarea>
+        <div class="div-button">
+            <input type="button" id="button-clean-list" onclick="clearTextBox()" value="Limpiar Lista">
+        </div>
+    </div>
     <script src="./scripts/script.js"></script>
 </body>
+
 </html>
