@@ -1,8 +1,8 @@
-function createGroups(studentsList) {
+function createGroups(studentsList, maxGroupSize) {
     const studentsAux = [...studentsList];
 
     const groups = [];
-    const maxGroupSize = 2;
+    // const maxGroupSize = 2;
 
     while (studentsAux.length) {
         const groupAux = [];
@@ -39,6 +39,8 @@ textAreaList += 'FRANCISCO JAVIER TORRES VILLAMOR\n';
 const studentsList = document.getElementById('students-text-box');
 studentsList.innerHTML = textAreaList.trim();
 
+const groupSize = document.getElementById('group-size');
+groupSize.value = 2;
 
 //DOM
 // const h1 = document.createElement('h1');
@@ -74,11 +76,14 @@ document.getElementById("button-clean-list").onclick = () => {
 const buttonClick = document.querySelector('#create-groups-button');
 buttonClick.addEventListener('click', (eventFunctOpt1) => {
 
+    const groupSize = document.getElementById('group-size');
+    const maxGroupSize = Number(groupSize.value);
+
     const studentsList = document.getElementById('students-text-box');
     const textAreaList = studentsList.value.trim();
     const students = textAreaList.split('\n');
 
-    const groups = [...createGroups(students)];
+    const groups = [...createGroups(students, maxGroupSize)];
 
     const checkDivGroup = document.getElementById('div-groups');
     if (document.body.contains(checkDivGroup)) {
