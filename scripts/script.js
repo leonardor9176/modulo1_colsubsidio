@@ -24,7 +24,6 @@ const studentsAux = students;
 
 const groups = [];
 const maxGroupSize = 2;
-let group = 0;
 
 while (studentsAux.length) {
     let groupAux = [];
@@ -36,10 +35,10 @@ while (studentsAux.length) {
         }
     }
     groups.push(groupAux);
-    group++;
 }
 // console.log(groups);
 
+//DOM
 const h1 = document.createElement('h1');
 h1.innerText = `Creación aleatoria de grupos`;
 document.body.appendChild(h1);
