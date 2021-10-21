@@ -41,16 +41,17 @@ studentsList.innerHTML = textAreaList.trim();
 
 
 //DOM
-const h1 = document.createElement('h1');
-h1.innerText = `Creación aleatoria de grupos`;
-document.body.appendChild(h1);
-const divTextBox = document.getElementById('div-text-box');
-divTextBox.before(h1);
+// const h1 = document.createElement('h1');
+// h1.innerText = `Creación aleatoria de grupos`;
+// document.body.appendChild(h1);
+// const divTextBox = document.getElementById('div-text-box');
+// divTextBox.before(h1);
 
+// const bodyMain = document.createElement('main');
+// bodyMain.setAttribute('id', 'body-main');
+// document.body.appendChild(bodyMain);
 
-const bodyMain = document.createElement('main');
-bodyMain.setAttribute('id', 'body-main');
-document.body.appendChild(bodyMain);
+const bodyMain = document.getElementById('body-main');
 
 const divButton = document.createElement('div');
 divButton.setAttribute('class', 'div-button');

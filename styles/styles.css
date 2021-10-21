@@ -71,7 +71,7 @@ h1{
 
 .div-group-container{
     background: var(--sky);
-    max-width: 50rem;
+    max-width: 30rem;
     padding: 1rem;
     margin: 1rem auto;
 }
